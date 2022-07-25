@@ -3,6 +3,7 @@ package com.hadesfranklyn.pedrapapeltesoura;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,16 +29,17 @@ public class MainActivity extends AppCompatActivity {
         this.opcaoSelecionada("Tesoura");
     }
 
-    public void opcaoSelecionada(String opcaoSelecionada) {
+    public void opcaoSelecionada(String escolhaUsuario) {
 
         ImageView imageResultado = findViewById(R.id.imageResultado);
+        TextView textResultado = findViewById(R.id.textResultado);
 
         int numero = new Random().nextInt(3);// 0 1 2
 
         String[] opcoes = {"Pedra", "Papel", "Tesoura"};
-        String opcaoApp = opcoes[numero];
+        String escolhaApp = opcoes[numero];
 
-        switch (opcaoApp){
+        switch (escolhaApp) {
             case "Pedra":
                 imageResultado.setImageResource(R.drawable.pedra);
                 break;
@@ -48,9 +50,24 @@ public class MainActivity extends AppCompatActivity {
                 imageResultado.setImageResource(R.drawable.tesoura);
                 break;
         }
+        if (
+                (escolhaApp == "Tesoura" && escolhaUsuario == "Papel")
+                        || (escolhaApp == "Papel" && escolhaUsuario == "Pedra")
+                        || (escolhaApp == "Pedra" && escolhaUsuario == "Tesoura")
+        ) {// App ganhador
+            textResultado.setText("Você perdeu :(");
+        } else if (
+                (escolhaUsuario == "Tesoura" && escolhaApp == "Papel")
+                        || (escolhaUsuario == "Papel" && escolhaApp == "Pedra")
+                        || (escolhaUsuario == "Pedra" && escolhaApp == "Tesoura")
+        ) {// Usuario ganhador
+            textResultado.setText("Você ganhou :)");
+        } else {// Empate
+            textResultado.setText("Empatamos ;)");
+        }
 
 
-        System.out.println("Item clicado: " + opcaoApp);
+        System.out.println("Item clicado: " + escolhaApp);
 
     }
 }
