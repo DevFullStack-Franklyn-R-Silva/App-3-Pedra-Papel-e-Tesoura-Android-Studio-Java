@@ -1,5 +1,9 @@
 # Pedra-Papel-e-Tesoura-Android-Studio-Java-Public
 
+- Escolhendo opção
+- Gerar escolha aleatória
+- Finalizando
+
 ## Jogo pedra papel e tesoura
 
 <div>
